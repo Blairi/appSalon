@@ -397,6 +397,10 @@ body {
       background: #0da6f3;
       color: #FFFFFF; }
 
+#anterior,
+#siguiente {
+  display: none; }
+
 @media (min-width: 768px) {
   .listado-servicios {
     display: grid;

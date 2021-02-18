@@ -252,31 +252,44 @@ function mostrarResumen(){
 
 	let cantidad = 0;
 
-	//iterar sobre el arreglo de servicios
-	servicios.forEach(servicio => {
-		const {nombre, precio} = servicio;
-		const contenedorServicio = document.createElement('DIV');
-		contenedorServicio.classList.add('contenedor-servicio');
+	//Valida que el usuario haya elegido servicios
+	if(servicios.length === 0){
+		//Pinta mensaje de que no ha seleccionado servicios
+		const noServicios = document.createElement('P');
+		noServicios.textContent = 'No has seleccionado ningun Servicio';
 
-		const textoServicio = document.createElement('P');
-		textoServicio.textContent = nombre;
+		noServicios.classList.add('invalidar-cita');
 
-		const precioServicio = document.createElement('P');
-		precioServicio.textContent = precio;
-		precioServicio.classList.add('precio');
+		//Agregar a resumen DIV
+		resumenDiv.appendChild(noServicios);
 
-		const totalServicio = precio.split('$');
-		// console.log(parseInt(totalServicio[1].trim()));
+		return;
+	}else{
+		//iterar sobre el arreglo de servicios
+		servicios.forEach(servicio => {
+			const {nombre, precio} = servicio;
+			const contenedorServicio = document.createElement('DIV');
+			contenedorServicio.classList.add('contenedor-servicio');
 
-		cantidad += parseInt(totalServicio[1].trim());
-		
-		//colocar texto y precio en Div
-		contenedorServicio.appendChild(textoServicio);
-		contenedorServicio.appendChild(precioServicio);
+			const textoServicio = document.createElement('P');
+			textoServicio.textContent = nombre;
 
-		serviciosCita.appendChild(contenedorServicio);
-	});
+			const precioServicio = document.createElement('P');
+			precioServicio.textContent = precio;
+			precioServicio.classList.add('precio');
 
+			const totalServicio = precio.split('$');
+			// console.log(parseInt(totalServicio[1].trim()));
+
+			cantidad += parseInt(totalServicio[1].trim());
+			
+			//colocar texto y precio en Div
+			contenedorServicio.appendChild(textoServicio);
+			contenedorServicio.appendChild(precioServicio);
+
+			serviciosCita.appendChild(contenedorServicio);
+		});
+	}
 
 	resumenDiv.appendChild(headingCita);
 	resumenDiv.appendChild(nombreCita);
@@ -348,7 +361,7 @@ function fechaCita(){
 		}
 	})
 }
-//**********************ARREGLAR BUG DE MESES CON 2 CIFRAS
+
 function desabilitarFechaAnterior(){
 	const inputFecha = document.querySelector('#fecha');
 
@@ -359,11 +372,14 @@ function desabilitarFechaAnterior(){
 
 
 	//formato deseado año-mes-dia
+	if( mes >= 10){
+		const fechaDeshabilitar = `${year}-${mes}-${dia}`;
+		inputFecha.min = fechaDeshabilitar;
+	}else{
+		const fechaDeshabilitar = `${year}-0${mes}-${dia}`;
+		inputFecha.min = fechaDeshabilitar;
+	}
 
-	const fechaDeshabilitar = `${year}-0${mes}-${dia}`;
-
-
-	inputFecha.min = fechaDeshabilitar;
 }
 function horaCita(){
 	const inputHora = document.querySelector('#hora');

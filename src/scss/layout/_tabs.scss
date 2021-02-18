@@ -16,6 +16,10 @@
 		}
 	}
 }
+#anterior,
+#siguiente{
+	display: none;
+}
 .listado-servicios{
 	@include tablet{
 		@include grid(2, 2rem);
