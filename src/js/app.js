@@ -372,6 +372,7 @@ function desabilitarFechaAnterior(){
 
 
 	//formato deseado año-mes-dia
+	//Modifica formato segun los digitos del mes
 	if( mes >= 10){
 		const fechaDeshabilitar = `${year}-${mes}-${dia}`;
 		inputFecha.min = fechaDeshabilitar;
