@@ -375,23 +375,25 @@ function desabilitarFechaAnterior(){
 
 	//Modifica formato segun los digitos del mes
 	if( mes >= 10){
-		//Modifica el formato segun los digitos del día
+		//Modifica el formato segun si el dia tiene 2 digitos
 		if( dia >=10 ){
 			const fechaDeshabilitar = `${year}-${mes}-${dia}`;
 			inputFecha.min = fechaDeshabilitar;
 			console.log(inputFecha.min);
 		}else{
+			//Modifica el formato segun si el dia tiene 1 digito
 			const fechaDeshabilitar = `${year}-${mes}-0${dia}`;
 			inputFecha.min = fechaDeshabilitar;
 			console.log(inputFecha.min);
 		}
 	}else{
-		//Modifica el formato segun los digitos del día
+		//Modifica el formato segun si el dia tiene 1 digito
 		if( dia >=10 ){
 			const fechaDeshabilitar = `${year}-0${mes}-${dia}`;
 			inputFecha.min = fechaDeshabilitar;
 			console.log(inputFecha.min);
 		}else{
+			//Modifica el formato segun si el dia tiene 2 digitos
 			const fechaDeshabilitar = `${year}-0${mes}-0${dia}`;
 			inputFecha.min = fechaDeshabilitar;
 			console.log(inputFecha.min);
