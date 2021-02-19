@@ -238,7 +238,7 @@ function mostrarResumen(){
 	fechaCita.innerHTML = `<span>Fecha: </span> ${fecha}`;
 
 	const horaCita = document.createElement('P');
-	horaCita.innerHTML = `<span>Hora: </span> ${hora}`;
+	horaCita.innerHTML = `<span>Hora: </span> ${hora} hrs`;
 
 
 	const serviciosCita = document.createElement('DIV');
@@ -372,13 +372,30 @@ function desabilitarFechaAnterior(){
 
 
 	//formato deseado año-mes-dia
+
 	//Modifica formato segun los digitos del mes
 	if( mes >= 10){
-		const fechaDeshabilitar = `${year}-${mes}-${dia}`;
-		inputFecha.min = fechaDeshabilitar;
+		//Modifica el formato segun los digitos del día
+		if( dia >=10 ){
+			const fechaDeshabilitar = `${year}-${mes}-${dia}`;
+			inputFecha.min = fechaDeshabilitar;
+			console.log(inputFecha.min);
+		}else{
+			const fechaDeshabilitar = `${year}-${mes}-0${dia}`;
+			inputFecha.min = fechaDeshabilitar;
+			console.log(inputFecha.min);
+		}
 	}else{
-		const fechaDeshabilitar = `${year}-0${mes}-${dia}`;
-		inputFecha.min = fechaDeshabilitar;
+		//Modifica el formato segun los digitos del día
+		if( dia >=10 ){
+			const fechaDeshabilitar = `${year}-0${mes}-${dia}`;
+			inputFecha.min = fechaDeshabilitar;
+			console.log(inputFecha.min);
+		}else{
+			const fechaDeshabilitar = `${year}-0${mes}-0${dia}`;
+			inputFecha.min = fechaDeshabilitar;
+			console.log(inputFecha.min);
+		}
 	}
 
 }
@@ -396,9 +413,10 @@ function horaCita(){
 				inputHora.value = '';
 			}, 3000)
 		}else{
-			cita.hora = horaCita;
 
-			console.log(cita)
+			cita.hora = horaCita;
+	
+			console.log(cita);
 		}
 	})
 }
